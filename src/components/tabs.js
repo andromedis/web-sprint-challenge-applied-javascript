@@ -28,23 +28,24 @@ const Tabs = (topics) => {
     topicsElem.appendChild(newElem);
 
     newElem.addEventListener('click', e => {
-      console.log(`click on ${newElem.textContent}`);
+      /* Code blocks marked TWIN at beginning of if/else blocks are identical. For some reason,
+       * moving code to here, outside of if/else to remove duplicate, breaks deselection
+       * functionality on the tab elements. cardClass declaration only necessary at beginning of else
+       * block, but code works either way. Leaving bafflingly necessary duplicates in place.
+       */
+      const cardClass = newElem.textContent === 'node.js' ? 'node' : newElem.textContent;
       if (newElem.classList.contains('active-tab')) {
-        console.log(`${newElem.textContent} is active`);
-        document.querySelectorAll('.tab').forEach(tab => {
-          tab.classList.remove('active-tab');
-        });
+        document.querySelectorAll('.tab').forEach(tab => {      // TWIN
+          tab.classList.remove('active-tab');                   // TWIN
+        });                                                     // TWIN
         document.querySelectorAll('.card').forEach(card => {
           card.classList.remove('hide');
         });
       }
       else {
-        console.log(`cardClass is .${newElem.textContent}`);
-        const cardClass = newElem.textContent === 'node.js' ? 'node' : newElem.textContent;
-        console.log(`cardClass is .${cardClass}`);
-        document.querySelectorAll('.tab').forEach(tab => {
-          tab.classList.remove('active-tab');
-        });
+        document.querySelectorAll('.tab').forEach(tab => {      // TWIN
+          tab.classList.remove('active-tab');                   // TWIN
+        });                                                     // TWIN
         newElem.classList.add('active-tab');
         document.querySelectorAll(`.card.${cardClass}`).forEach(card => {
           card.classList.remove('hide');
