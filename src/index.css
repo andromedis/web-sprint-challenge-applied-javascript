@@ -222,6 +222,10 @@ body {
   letter-spacing: 1px;
   font-weight: bold;
 }
+/* added card hide style */
+.hide {
+  display: none !important;
+}
 .carousel {
   width: 100%;
   display: flex;

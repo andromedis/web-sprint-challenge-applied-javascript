@@ -26,6 +26,34 @@ const Tabs = (topics) => {
     newElem.classList.add('tab');
     newElem.textContent = topic;
     topicsElem.appendChild(newElem);
+
+    newElem.addEventListener('click', e => {
+      console.log(`click on ${newElem.textContent}`);
+      if (newElem.classList.contains('active-tab')) {
+        console.log(`${newElem.textContent} is active`);
+        document.querySelectorAll('.tab').forEach(tab => {
+          tab.classList.remove('active-tab');
+        });
+        document.querySelectorAll('.card').forEach(card => {
+          card.classList.remove('hide');
+        });
+      }
+      else {
+        console.log(`cardClass is .${newElem.textContent}`);
+        const cardClass = newElem.textContent === 'node.js' ? 'node' : newElem.textContent;
+        console.log(`cardClass is .${cardClass}`);
+        document.querySelectorAll('.tab').forEach(tab => {
+          tab.classList.remove('active-tab');
+        });
+        newElem.classList.add('active-tab');
+        document.querySelectorAll(`.card.${cardClass}`).forEach(card => {
+          card.classList.remove('hide');
+        });
+        document.querySelectorAll(`.card:not(.${cardClass})`).forEach(card => {
+          card.classList.add('hide');
+        });
+      }
+    })
   })
 
   return topicsElem;

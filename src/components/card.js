@@ -68,7 +68,9 @@ const cardAppender = (selector) => {
       const parentElem = document.querySelector(selector);
       for (const [topic, articles] of Object.entries(data)) {
         articles.forEach(article => {
-          parentElem.appendChild(Card(article));
+          const card = Card(article);
+          card.classList.add(topic);
+          parentElem.appendChild(card);
         });
       }
     })
